@@ -60,7 +60,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         px: 2
       }}>
         <Box sx={{
-          my: 2,
+          // my: 2,
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 1
@@ -72,7 +72,12 @@ const Dashboard: React.FC<DashboardProps> = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             width: '100%',
-            mb: 3
+            mb: 3,
+            position: 'sticky',
+            top: 0,
+            zIndex: 1000,
+            bgcolor: 'background.paper', // Match your background color
+            pb: 2,  // Add some padding bottom
           }}>
             <Box sx={{ flexGrow: 1, mr: 2 }}>
               <CategoryTabs
