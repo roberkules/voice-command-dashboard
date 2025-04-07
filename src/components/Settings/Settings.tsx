@@ -20,38 +20,20 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
-import { VoiceInfo } from "../../hooks/useSpeechSynthesis";
+import { useSpeechSynthesis } from "../../hooks/useSpeechSynthesis";
 import { ThemeMode } from "../../types";
+import { useAppContext } from "../../context";
 
 interface SettingsProps {
-  voices: VoiceInfo[];
-  currentVoice: SpeechSynthesisVoice | null;
-  speechRate: number;
-  themeMode: ThemeMode;
-  tvName: string;
-  pauseDuration: number;
-  onPauseDurationChange: (duration: number) => void;
-  onTvNameChange: (name: string) => void;
-  onVoiceChange: (voice: SpeechSynthesisVoice) => void;
-  onSpeechRateChange: (rate: number) => void;
-  onThemeModeChange: (mode: ThemeMode) => void;
   onBackClick: () => void;
 }
 
 const Settings: React.FC<SettingsProps> = ({
-  voices,
-  currentVoice,
-  speechRate,
-  themeMode,
-  onVoiceChange,
-  onSpeechRateChange,
-  onThemeModeChange,
   onBackClick,
-  tvName,
-  onTvNameChange,
-  pauseDuration,
-  onPauseDurationChange,
 }) => {
+  const { settings, updateSettings } = useAppContext();
+  const { voices } = useSpeechSynthesis();
+
   // Filter to only show German voices
   const germanVoices = voices.filter((voice) => voice.lang.includes("de"));
 
@@ -60,34 +42,25 @@ const Settings: React.FC<SettingsProps> = ({
 
   const handleVoiceChange = (event: SelectChangeEvent<string>) => {
     const voiceName = event.target.value;
-    const selectedVoice = voices.find((v) => v.name === voiceName);
-    if (selectedVoice) {
-      onVoiceChange(selectedVoice.voice);
-    }
+    updateSettings({ voiceName });
   };
 
   const handleRateChange = (_event: Event, newValue: number | number[]) => {
-    onSpeechRateChange(newValue as number);
+    updateSettings({ speechRate: newValue as number });
   };
 
-  const handleThemeModeChange = (
-    _event: React.MouseEvent<HTMLElement>,
-    newMode: ThemeMode | null
-  ) => {
+  const handlePauseDurationChange = (_event: Event, newValue: number | number[]) => {
+    updateSettings({ pauseDuration: newValue as number });
+  };
+
+  const handleThemeModeChange = (_event: React.MouseEvent<HTMLElement>, newMode: ThemeMode | null) => {
     if (newMode !== null) {
-      onThemeModeChange(newMode);
+      updateSettings({ themeMode: newMode });
     }
   };
 
   const handleTvNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onTvNameChange(event.target.value);
-  };
-
-  const handlePauseDurationChange = (
-    _event: Event,
-    newValue: number | number[]
-  ) => {
-    onPauseDurationChange(newValue as number);
+    updateSettings({ tvName: event.target.value });
   };
 
   // Format the pause duration for display
@@ -140,7 +113,7 @@ const Settings: React.FC<SettingsProps> = ({
                   <Select
                     labelId="voice-select-label"
                     id="voice-select"
-                    value={currentVoice?.name || ""}
+                    value={settings.voiceName || ""}
                     label="Stimme"
                     onChange={handleVoiceChange}
                   >
@@ -153,10 +126,10 @@ const Settings: React.FC<SettingsProps> = ({
                 </FormControl>
 
                 <Typography id="speech-rate-slider" gutterBottom>
-                  Sprechgeschwindigkeit: {Math.round(speechRate * 100)}%
+                  Sprechgeschwindigkeit: {Math.round(settings.speechRate * 100)}%
                 </Typography>
                 <Slider
-                  value={speechRate}
+                  value={settings.speechRate}
                   onChange={handleRateChange}
                   aria-labelledby="speech-rate-slider"
                   step={0.1}
@@ -167,10 +140,10 @@ const Settings: React.FC<SettingsProps> = ({
                 />
 
                 <Typography id="pause-duration-slider" gutterBottom>
-                  Pause nach "Hey Google": {formatPauseDuration(pauseDuration)}
+                  Pause nach "Hey Google": {formatPauseDuration(settings.pauseDuration)}
                 </Typography>
                 <Slider
-                  value={pauseDuration}
+                  value={settings.pauseDuration}
                   onChange={handlePauseDurationChange}
                   aria-labelledby="pause-duration-slider"
                   step={500}
@@ -195,7 +168,7 @@ const Settings: React.FC<SettingsProps> = ({
                 <TextField
                   fullWidth
                   label="Fernsehername"
-                  value={tvName}
+                  value={settings.tvName}
                   onChange={handleTvNameChange}
                   helperText="Dieser Name wird in Sprachbefehlen verwendet (z.B. 'Fernseher', 'TV', 'TCL Smart TV')."
                   variant="outlined"
@@ -220,21 +193,21 @@ const Settings: React.FC<SettingsProps> = ({
               >
                 <Typography gutterBottom>Farbschema</Typography>
                 <ToggleButtonGroup
-                  value={themeMode}
+                  value={settings.themeMode}
                   exclusive
                   onChange={handleThemeModeChange}
                   aria-label="theme mode"
                   sx={{ mb: 2 }}
                 >
-                  <ToggleButton value="light" aria-label="light mode">
+                  <ToggleButton value={ThemeMode.LIGHT} aria-label="light mode">
                     <LightModeIcon sx={{ mr: 1 }} />
                     Hell
                   </ToggleButton>
-                  <ToggleButton value="dark" aria-label="dark mode">
+                  <ToggleButton value={ThemeMode.DARK} aria-label="dark mode">
                     <DarkModeIcon sx={{ mr: 1 }} />
                     Dunkel
                   </ToggleButton>
-                  <ToggleButton value="system" aria-label="system theme">
+                  <ToggleButton value={ThemeMode.SYSTEM} aria-label="system theme">
                     <SettingsBrightnessIcon sx={{ mr: 1 }} />
                     System
                   </ToggleButton>

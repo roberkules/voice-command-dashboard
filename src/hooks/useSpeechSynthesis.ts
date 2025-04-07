@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SpeechOptions } from '../types';
+import { useAppContext } from '../context';
 
 export interface VoiceInfo {
   voice: SpeechSynthesisVoice;
@@ -9,7 +10,8 @@ export interface VoiceInfo {
 
 export const useSpeechSynthesis = () => {
   const [voices, setVoices] = useState<VoiceInfo[]>([]);
-  const [currentVoice, setCurrentVoice] = useState<SpeechSynthesisVoice | null>(null);
+
+  const { settings } = useAppContext();
 
   // Load available voices
   useEffect(() => {
@@ -22,26 +24,6 @@ export const useSpeechSynthesis = () => {
           lang: voice.lang
         }));
         setVoices(voiceInfoList);
-
-        // Try to find a good default German voice
-        const germanVoice = availableVoices.find(
-          voice => voice.lang.includes('de') && (voice.name.includes('Female') || voice.name.includes('Google'))
-        );
-
-        // Fallback to any German voice
-        const anyGermanVoice = availableVoices.find(voice => voice.lang.includes('de'));
-
-        // Final fallback to any voice
-        const savedVoiceName = localStorage.getItem('voiceName');
-        if (savedVoiceName) {
-          const savedVoice = availableVoices.find(v => v.name === savedVoiceName);
-          if (savedVoice) {
-            setCurrentVoice(savedVoice);
-            return;
-          }
-        }
-
-        setCurrentVoice(germanVoice || anyGermanVoice || availableVoices[0]);
       }
     };
 
@@ -62,13 +44,13 @@ export const useSpeechSynthesis = () => {
 
   const createUtterance = useCallback((text: string, options: SpeechOptions) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = options.rate || 0.9;
+    utterance.rate = options.rate || settings.speechRate;
     utterance.pitch = options.pitch || 1;
     utterance.volume = options.volume || 1;
     utterance.lang = options.lang || 'de-AT';
-    utterance.voice = options.voice || currentVoice;
+    utterance.voice = options.voice || settings.voiceName ? (voices.find(v => v.name === settings.voiceName)?.voice || null) : null;
     return utterance;
-  }, [currentVoice]);
+  }, [settings, voices]);
 
   const speak = useCallback((text: string, options: SpeechOptions = {}) => {
     // Default options
@@ -109,9 +91,5 @@ export const useSpeechSynthesis = () => {
     speechSynthesis.speak(utterance);
   }, [createUtterance]);
 
-  const setVoice = useCallback((voice: SpeechSynthesisVoice) => {
-    setCurrentVoice(voice);
-  }, []);
-
-  return { speak, voices, currentVoice, setVoice };
+  return { speak, voices };
 };

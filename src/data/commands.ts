@@ -6,21 +6,21 @@ export const commands: CommandsData = {
       id: 'orf1',
       name: 'ORF 1',
       logo: '/logos/orf1.png',
-      voiceCommand: 'schalte auf ORF 1 am Fernseher',
+      voiceCommand: 'schalte auf ORF 1 HD am Fernseher',
       category: 'tv-channels'
     },
     {
       id: 'orf2',
       name: 'ORF 2',
       logo: '/logos/orf2.png',
-      voiceCommand: 'schalte auf "ORF 2" am Fernseher',
+      voiceCommand: 'schalte auf ORF 2 HD am Fernseher',
       category: 'tv-channels'
     },
     {
       id: 'orf3',
       name: 'ORF III',
       logo: '/logos/orf3.png',
-      voiceCommand: 'schalte auf ORF 3 am Fernseher',
+      voiceCommand: 'schalte auf ORF 3 HD am Fernseher',
       category: 'tv-channels'
     },
     {
@@ -41,14 +41,14 @@ export const commands: CommandsData = {
       id: 'atv2',
       name: 'ATV2',
       logo: '/logos/atv2.png',
-      voiceCommand: 'schalte auf ATV 2 am Fernseher',
+      voiceCommand: 'schalte auf "ATV 2" am Fernseher',
       category: 'tv-channels'
     },
     {
       id: 'puls4',
       name: 'PULS 4',
       logo: '/logos/puls4.png',
-      voiceCommand: 'schalte auf Puls 4 am Fernseher',
+      voiceCommand: 'schalte auf "Puls 4" am Fernseher',
       category: 'tv-channels'
     },
     {
@@ -62,7 +62,7 @@ export const commands: CommandsData = {
       id: 'oe24',
       name: 'oe24.TV',
       logo: '/logos/oe24.png',
-      voiceCommand: 'schalte auf OE24 am Fernseher',
+      voiceCommand: 'schalte auf "OE24" am Fernseher',
       category: 'tv-channels'
     },
     {
@@ -98,14 +98,14 @@ export const commands: CommandsData = {
       id: 'sat1',
       name: 'SAT.1',
       logo: '/logos/sat-1.png',
-      voiceCommand: 'schalte auf SAT 1 am Fernseher',
+      voiceCommand: 'schalte auf "SAT 1 Österreich" am Fernseher',
       category: 'tv-channels'
     },
     {
       id: 'prosieben',
       name: 'ProSieben',
       logo: '/logos/pro-sieben.png',
-      voiceCommand: 'schalte auf Pro Sieben am Fernseher',
+      voiceCommand: 'schalte auf Pro Sieben Österreich am Fernseher',
       category: 'tv-channels'
     },
     {
@@ -119,14 +119,14 @@ export const commands: CommandsData = {
       id: 'kabel1',
       name: 'Kabel 1',
       logo: '/logos/kabel-eins.png',
-      voiceCommand: 'schalte auf Kabel 1 am Fernseher',
+      voiceCommand: 'schalte auf "Kabel 1" am Fernseher',
       category: 'tv-channels'
     },
     {
       id: 'rtl2',
       name: 'RTL II',
       logo: '/logos/rtl-zwei.png',
-      voiceCommand: 'schalte auf RTL 2 am Fernseher',
+      voiceCommand: 'schalte auf "RTL 2" am Fernseher',
       category: 'tv-channels'
     },
     {

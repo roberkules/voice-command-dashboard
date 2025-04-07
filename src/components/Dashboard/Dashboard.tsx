@@ -7,22 +7,20 @@ import { categories } from '../../data/categories';
 import { commands } from '../../data/commands';
 import { useSpeechSynthesis } from '../../hooks/useSpeechSynthesis';
 import { Command } from '../../types';
+import { useAppContext } from '../../context';
 
 interface DashboardProps {
   onSettingsClick: () => void;
-  speechRate: number;
-  pauseDuration: number;
-  currentVoice: SpeechSynthesisVoice | null;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
   onSettingsClick,
-  speechRate,
-  pauseDuration,
 }) => {
+  const { settings } = useAppContext();
+
   const [activeCategory, setActiveCategory] = useState('tv-channels');
   const [feedback, setFeedback] = useState<string | null>(null);
-  const { speak } = useSpeechSynthesis();
+  const { speak, voices } = useSpeechSynthesis();
 
   const handleCommandClick = (command: Command) => {
     const fullCommand = `Hey Google, ${command.voiceCommand}`;
@@ -33,14 +31,15 @@ const Dashboard: React.FC<DashboardProps> = ({
     // Hide feedback after 6 seconds
     setTimeout(() => {
       setFeedback(null);
-    }, 6000);
+    }, 7000);
 
     // Speak the command using global settings
     speak(fullCommand, {
       pauseAfterPrefix: true,
-      prefixPauseDuration: pauseDuration,
-      rate: speechRate,
-      lang: 'de-AT'
+      prefixPauseDuration: settings.pauseDuration,
+      rate: settings.speechRate,
+      voice: settings.voiceName ? voices.find(v => v.name === settings.voiceName)?.voice : undefined,
+      lang: 'de-AT',
     });
   };
 
