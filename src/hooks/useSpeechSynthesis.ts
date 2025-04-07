@@ -60,17 +60,22 @@ export const useSpeechSynthesis = () => {
     };
   }, []);
 
+  const createUtterance = useCallback((text: string, options: SpeechOptions) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = options.rate || 0.9;
+    utterance.pitch = options.pitch || 1;
+    utterance.volume = options.volume || 1;
+    utterance.lang = options.lang || 'de-AT';
+    utterance.voice = options.voice || currentVoice;
+    return utterance;
+  }, [currentVoice]);
+
   const speak = useCallback((text: string, options: SpeechOptions = {}) => {
     // Default options
     const defaultOptions: SpeechOptions = {
-      rate: 0.9, // Slower rate
-      pitch: 1,
-      volume: 1,
-      lang: 'de-AT',
       pauseAfterPrefix: false,
       prefixPauseDuration: 2000,
       prefix: 'Hey Google',
-      voice: undefined,
     };
 
     const mergedOptions = { ...defaultOptions, ...options };
@@ -81,30 +86,10 @@ export const useSpeechSynthesis = () => {
 
       if (parts.length > 1) {
         // Create utterance for prefix
-        const prefixUtterance = new SpeechSynthesisUtterance(`${mergedOptions.prefix},`);
-        prefixUtterance.rate = mergedOptions.rate || 0.7;
-        prefixUtterance.pitch = mergedOptions.pitch || 1;
-        prefixUtterance.volume = mergedOptions.volume || 1;
-        prefixUtterance.lang = mergedOptions.lang || 'de-AT';
-
-        if (mergedOptions.voice) {
-          prefixUtterance.voice = mergedOptions.voice;
-        } else if (currentVoice) {
-          prefixUtterance.voice = currentVoice;
-        }
+        const prefixUtterance = createUtterance(`${mergedOptions.prefix},`, mergedOptions);
 
         // Create utterance for the rest
-        const restUtterance = new SpeechSynthesisUtterance(parts[1].trim());
-        restUtterance.rate = mergedOptions.rate || 0.7;
-        restUtterance.pitch = mergedOptions.pitch || 1;
-        restUtterance.volume = mergedOptions.volume || 1;
-        restUtterance.lang = mergedOptions.lang || 'de-AT';
-
-        if (mergedOptions.voice) {
-          restUtterance.voice = mergedOptions.voice;
-        } else if (currentVoice) {
-          restUtterance.voice = currentVoice;
-        }
+        const restUtterance = createUtterance(parts[1].trim(), mergedOptions);
 
         // Speak prefix
         speechSynthesis.speak(prefixUtterance);
@@ -119,20 +104,10 @@ export const useSpeechSynthesis = () => {
     }
 
     // If no special handling, just speak normally
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = mergedOptions.rate || 0.7;
-    utterance.pitch = mergedOptions.pitch || 1;
-    utterance.volume = mergedOptions.volume || 1;
-    utterance.lang = mergedOptions.lang || 'de-AT';
-
-    if (mergedOptions.voice) {
-      utterance.voice = mergedOptions.voice;
-    } else if (currentVoice) {
-      utterance.voice = currentVoice;
-    }
+    const utterance = createUtterance(text, mergedOptions);
 
     speechSynthesis.speak(utterance);
-  }, [currentVoice]);
+  }, [createUtterance]);
 
   const setVoice = useCallback((voice: SpeechSynthesisVoice) => {
     setCurrentVoice(voice);

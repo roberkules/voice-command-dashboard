@@ -14,7 +14,7 @@ const CommandCard: React.FC<CommandCardProps> = ({ command, onCommandClick }) =>
     <Card
       sx={{
         width: isTVControl ? { xs: 100, sm: 120, md: 140 } : { xs: 140, sm: 160, md: 180 },
-        height: isTVControl ? { xs: 100, sm: 120, md: 140 } : { xs: 140, sm: 160, md: 180 },
+        // height: isTVControl ? { xs: 100, sm: 120, md: 140 } : { xs: 130, sm: 140, md: 160 },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -27,31 +27,33 @@ const CommandCard: React.FC<CommandCardProps> = ({ command, onCommandClick }) =>
         },
         m: 1,
         backgroundColor: isTVControl ? 'primary.light' : 'background.paper',
+        // backgroundColor: isTVControl ? 'primary.light' : 'black',
       }}
       onClick={() => onCommandClick(command)}
     >
       <CardMedia
         component="img"
         sx={{
-          width: isTVControl ? { xs: 50, sm: 60, md: 70 } : { xs: 70, sm: 80, md: 100 },
+          // width: isTVControl ? { xs: 50, sm: 60, md: 70 } : { xs: 70, sm: 80, md: 100 },
           height: isTVControl ? { xs: 50, sm: 60, md: 70 } : { xs: 70, sm: 80, md: 100 },
           objectFit: 'contain',
-          mt: 1
+          p: 1,
+          backgroundColor: isTVControl ? null : 'rgba(0, 0, 0, 0.5)',
         }}
         image={command.logo}
         alt={command.name}
       />
-      <CardContent sx={{ p: { xs: 1, sm: 2 } }}>
+      <CardContent sx={{ p: 1 }}>
         <Typography
           variant="h6"
           component="div"
           align="center"
           sx={{
             fontSize: isTVControl
-              ? { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' }
-              : { xs: '0.9rem', sm: '1.1rem', md: '1.25rem' },
-            fontWeight: isTVControl ? 'bold' : 'normal',
-            color: isTVControl ? 'primary.contrastText' : 'text.primary'
+              ? { xs: '1.2rem', sm: '1.6rem', md: '1.8rem' }
+              : { xs: '0.9rem', sm: '1.25rem', md: '1.4rem' },
+            fontWeight: 'bold',
+            // color: isTVControl ? 'primary.contrastText' : 'white'
           }}
         >
           {command.name}

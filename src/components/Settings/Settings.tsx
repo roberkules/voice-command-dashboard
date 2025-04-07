@@ -20,7 +20,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
-import { VoiceInfo } from "../hooks/useSpeechSynthesis";
+import { VoiceInfo } from "../../hooks/useSpeechSynthesis";
 import { ThemeMode } from "../../types";
 
 interface SettingsProps {

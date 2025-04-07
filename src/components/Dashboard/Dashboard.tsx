@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Grid, Snackbar, Alert, IconButton } from '@mui/material';
+import { Box, Snackbar, Alert, IconButton } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import CommandCard from '../CommandCard/CommandCard';
@@ -19,7 +19,6 @@ const Dashboard: React.FC<DashboardProps> = ({
   onSettingsClick,
   speechRate,
   pauseDuration,
-  currentVoice
 }) => {
   const [activeCategory, setActiveCategory] = useState('tv-channels');
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -31,10 +30,10 @@ const Dashboard: React.FC<DashboardProps> = ({
     // Show visual feedback
     setFeedback(fullCommand);
 
-    // Hide feedback after 3 seconds
+    // Hide feedback after 6 seconds
     setTimeout(() => {
       setFeedback(null);
-    }, 3000);
+    }, 6000);
 
     // Speak the command using global settings
     speak(fullCommand, {
@@ -132,7 +131,7 @@ const Dashboard: React.FC<DashboardProps> = ({
         open={feedback !== null}
         autoHideDuration={3000}
         onClose={() => setFeedback(null)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert
           severity="info"
