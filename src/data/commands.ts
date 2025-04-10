@@ -6,70 +6,70 @@ export const commands: CommandsData = {
       id: 'orf1',
       name: 'ORF 1',
       logo: '/logos/orf1.png',
-      voiceCommand: 'schalte auf ORF 1 HD am Smart TV',
+      voiceCommand: 'wechsle auf ORF 1 HD am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'orf2',
       name: 'ORF 2',
       logo: '/logos/orf2.png',
-      voiceCommand: 'schalte auf ORF 2 HD am Smart TV',
+      voiceCommand: 'wechsle auf ORF 2 HD am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'orf3',
       name: 'ORF III',
       logo: '/logos/orf3.png',
-      voiceCommand: 'schalte auf ORF 3 HD am Smart TV',
+      voiceCommand: 'wechsle auf ORF 3 HD am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'orfsport',
       name: 'ORF SPORT+',
       logo: '/logos/orf-sport-plus.png',
-      voiceCommand: 'schalte auf ORF Sport am Smart TV',
+      voiceCommand: 'wechsle auf ORF Sport am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'atv',
       name: 'ATV',
       logo: '/logos/atv.png',
-      voiceCommand: 'schalte auf ATV am Smart TV',
+      voiceCommand: 'wechsle auf ATV am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'atv2',
       name: 'ATV2',
       logo: '/logos/atv2.png',
-      voiceCommand: 'schalte auf "ATV 2" am Smart TV',
+      voiceCommand: 'wechsle auf "ATV 2" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'puls4',
       name: 'PULS 4',
       logo: '/logos/puls4.png',
-      voiceCommand: 'schalte auf "Puls 4" am Smart TV',
+      voiceCommand: 'wechsle auf "Puls 4" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'servustv',
       name: 'ServusTV',
       logo: '/logos/servus-tv.png',
-      voiceCommand: 'schalte auf Servus TV am Smart TV',
+      voiceCommand: 'wechsle auf Servus TV am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'oe24',
       name: 'oe24.TV',
       logo: '/logos/oe24.png',
-      voiceCommand: 'schalte auf "OE24" am Smart TV',
+      voiceCommand: 'wechsle auf "OE24" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'krone',
       name: 'Krone.TV',
       logo: '/logos/krone-tv.png',
-      voiceCommand: 'schalte auf Krone TV am Smart TV',
+      voiceCommand: 'wechsle auf Krone TV am Smart TV',
       category: 'tv-channels'
     },
     // German public channels
@@ -77,70 +77,70 @@ export const commands: CommandsData = {
       id: 'ard',
       name: 'ARD',
       logo: '/logos/ard.png',
-      voiceCommand: 'schalte auf ARD am Smart TV',
+      voiceCommand: 'wechsle auf ARD am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'zdf',
       name: 'ZDF',
       logo: '/logos/zdf.png',
-      voiceCommand: 'schalte auf ZDF am Smart TV',
+      voiceCommand: 'wechsle auf ZDF am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'rtl',
       name: 'RTL',
       logo: '/logos/rtl.png',
-      voiceCommand: 'schalte auf RTL am Smart TV',
+      voiceCommand: 'wechsle auf RTL am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'sat1',
       name: 'SAT.1',
       logo: '/logos/sat-1.png',
-      voiceCommand: 'schalte auf "SAT 1 Österreich" am Smart TV',
+      voiceCommand: 'wechsle auf "SAT 1 Österreich" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'prosieben',
       name: 'ProSieben',
       logo: '/logos/pro-sieben.png',
-      voiceCommand: 'schalte auf Pro Sieben Österreich am Smart TV',
+      voiceCommand: 'wechsle auf Pro Sieben Österreich am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'vox',
       name: 'VOX',
       logo: '/logos/vox.png',
-      voiceCommand: 'schalte auf VOX am Smart TV',
+      voiceCommand: 'wechsle auf VOX am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'kabel1',
       name: 'Kabel 1',
       logo: '/logos/kabel-eins.png',
-      voiceCommand: 'schalte auf "Kabel 1" am Smart TV',
+      voiceCommand: 'wechsle auf "Kabel 1" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'rtl2',
       name: 'RTL II',
       logo: '/logos/rtl-zwei.png',
-      voiceCommand: 'schalte auf "RTL 2" am Smart TV',
+      voiceCommand: 'wechsle auf "RTL 2" am Smart TV',
       category: 'tv-channels'
     },
     {
       id: 'arte',
       name: 'ARTE',
       logo: '/logos/arte.png',
-      voiceCommand: 'schalte auf Arte am Smart TV',
+      voiceCommand: 'wechsle auf Arte am Smart TV',
       category: 'tv-channels'
     },
     {
       id: '3sat',
       name: '3SAT',
       logo: '/logos/3sat.png',
-      voiceCommand: 'schalte auf 3 SAT am Smart TV',
+      voiceCommand: 'wechsle auf 3 SAT am Smart TV',
       category: 'tv-channels'
     }
   ],
@@ -201,7 +201,7 @@ export const commands: CommandsData = {
       id: `number-${num}`,
       name: `${num}`,
       logo: `/icons/number-${num}.png`,
-      voiceCommand: `schalte auf Kanal ${num} am Smart TV`,
+      voiceCommand: `wechsle auf Kanal ${num} am Smart TV`,
       category: 'tv-controls'
     }))
   ],
