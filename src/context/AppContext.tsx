@@ -4,7 +4,7 @@ import { AppContext } from './useAppContext';
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<AppSettings>({
-    tvName: 'Fernseher',
+    tvName: 'Smart TV',
     speechRate: 1,
     pauseDuration: 500,
     themeMode: ThemeMode.SYSTEM,
