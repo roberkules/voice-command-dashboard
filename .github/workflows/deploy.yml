@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Semver
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
