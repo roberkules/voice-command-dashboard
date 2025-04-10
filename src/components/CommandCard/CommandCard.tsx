@@ -3,12 +3,13 @@ import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { Command } from '../../types';
 
 interface CommandCardProps {
+  category: string;
   command: Command;
   onCommandClick: (command: Command) => void;
 }
 
-const CommandCard: React.FC<CommandCardProps> = ({ command, onCommandClick }) => {
-  const isTVControl = command.category === 'tv-controls';
+const CommandCard: React.FC<CommandCardProps> = ({ category, command, onCommandClick }) => {
+  const isTVControl = category === 'tv-controls';
 
   return (
     <Card

@@ -124,6 +124,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             {commands[activeCategory]?.map(command => (
               <CommandCard
                 key={command.id}
+                category={activeCategory}
                 command={command}
                 onCommandClick={handleCommandClick}
               />
