@@ -10,7 +10,7 @@ export interface Command {
   name: string;
   logo: string;
   voiceCommand: string;
-  category: string;
+  // category: string;
 }
 
 export interface CommandsData {

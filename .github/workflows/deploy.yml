@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-  release:
-    types: [created]
-  workflow_run:
-    workflows: ["Release Please"]
-    types:
-      - completed
 
 jobs:
   deploy:

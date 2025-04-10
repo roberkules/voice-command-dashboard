@@ -4,7 +4,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CategoryTabs from '../CategoryTabs/CategoryTabs';
 import CommandCard from '../CommandCard/CommandCard';
 import { categories } from '../../data/categories';
-import { commands } from '../../data/commands';
+import { useCommands } from '../../hooks/useCommands';
 import { useSpeechSynthesis } from '../../hooks/useSpeechSynthesis';
 import { Command } from '../../types';
 import { useAppContext } from '../../context';
@@ -21,6 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   const [activeCategory, setActiveCategory] = useState('tv-channels');
   const [feedback, setFeedback] = useState<string | null>(null);
   const { speak, voices } = useSpeechSynthesis();
+  const commands = useCommands(settings);
 
   const handleCommandClick = (command: Command) => {
     const fullCommand = `Hey Google, ${command.voiceCommand}`;
@@ -93,12 +94,12 @@ const Dashboard: React.FC<DashboardProps> = ({
                 boxShadow: 1,
                 '&:hover': {
                   bgcolor: 'action.hover'
-                }
+                },
               }}
               onClick={onSettingsClick}
               aria-label="settings"
             >
-              <SettingsIcon fontSize="large" />
+              <SettingsIcon sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
             </IconButton>
           </Box>
 

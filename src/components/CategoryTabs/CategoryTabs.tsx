@@ -51,8 +51,13 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({
         variant="fullWidth"
         sx={{
           '& .MuiTab-root': {
-            fontSize: { xs: '0.9rem', sm: '1.1rem' },
-            py: { xs: 1, sm: 2 }
+            fontSize: { xs: '0', sm: '1.1rem' },
+            py: { xs: 0, sm: 2 },
+            minWidth: 'auto',
+          },
+          '& .MuiTab-icon': {
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+            // margin: { xs: '0 auto', sm: 'inherit' } // Center icon when no label
           }
         }}
       >
